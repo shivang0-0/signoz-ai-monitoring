@@ -92,3 +92,13 @@ Rules for managing working memory budget, preventing context window burn, and en
 - **State Tracking:** If you encounter a failing test loop that you cannot solve after 3 attempts, stop iterating. Write your current state, useful failure outputs, and hypotheses into `DEBUG_LOG.md`. Then pause and ask for help. Do not burn through tokens endlessly.
 - **Incremental Checkpointing:** For multi-step features, commit working intermediate states with descriptive messages. This lets sessions be resumed without losing context.
 
+## 7. Testing Discipline
+
+<!--
+TESTING REQUIREMENT
+Every new service addition must be accompanied by tests. This is non-negotiable.
+-->
+
+- **Always Test New Services:** For each new service module added to `services/`, write corresponding unit tests in `tests/services/`. The test file should cover the happy path, error paths, edge cases, and verify that external dependencies are called with correct parameters.
+- **Mock External Dependencies:** Services that depend on external clients (SigNoz MCP, LLM providers) must be testable by injecting mock clients — do not require live external connections in unit tests.
+
